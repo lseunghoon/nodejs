@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.7",
+    "sanitize-html": "^2.3.3"
+  },
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
