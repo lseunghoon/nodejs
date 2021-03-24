@@ -2,10 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 var compression = require('compression');
-var template = require('./lib/template.js');
-var db = require('./lib/db')
 var topic = require('./lib/topic');
-
+var author = require('./lib/author');
 
 app.use(express.static('public'));
 app.use(express.urlencoded({
@@ -41,6 +39,30 @@ app.post('/update', function (request, response) {
 app.post('/delete', (request, response) => {
   topic.delete(request, response);
 });
+
+app.get('/author', (request, response) => {
+ author.home(request, response);
+});
+
+app.post('/author/create_author_process', (request, response) => {
+  author.create_process(request, response);
+ });
+
+ app.get('/author/update/:pageId', (request, response) => {
+  author.update(request, response);
+ });
+
+ app.post('/author/update_process', (request, response) => {
+  author.update_process(request, response);
+ });
+
+ app.post('/author/delete', (request, response) => {
+  author.delete_process(request, response);
+ });
+
+
+
+
 
 //error 처리, 밑에서 사용
 app.use((request, response, next) => {
