@@ -1,19 +1,9 @@
 const express = require('express')
 const app = express()
 const port = 3000
-var fs = require('fs');
-var path = require('path');
-const sanitizeHtml = require('sanitize-html');
 var compression = require('compression');
 var template = require('./lib/template.js');
-var mysql = require('mysql');
-var db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'tmdgns0070',
-  database: 'testlsh'
-});
-db.connect();
+var db = require('./lib/db')
 
 
 app.use(express.static('public'));
@@ -21,12 +11,6 @@ app.use(express.urlencoded({
   extended: false
 }));
 app.use(compression());
-app.get('*', (request, response, next) => {
-  fs.readdir('./data', function (err, filelist) {
-    request.list = filelist;
-    next();
-  })
-})
 
 app.get('/', (request, response) => {
   db.query('select * from topic_test', (err, topics) => {
