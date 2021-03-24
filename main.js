@@ -6,12 +6,17 @@ var path = require('path');
 const sanitizeHtml = require('sanitize-html');
 var compression = require('compression');
 var template = require('./lib/template.js');
-const {
-  request,
-  response
-} = require('express');
+var mysql = require('mysql');
+var db = mysql.createConnection({
+  host : 'localhost',
+  user :'root',
+  password : 'tmdgns0070',
+  database : 'testlsh'
+});
+db.connect();
 
-app.use(express.static('public')); //정적인 파일의 서비스 ex) html image js 등등
+
+app.use(express.static('public'));
 app.use(express.urlencoded({
   extended: false
 }));
